@@ -20,7 +20,7 @@ include $(SAM_ROOT)/macloader/Android.mk
 endif
 
 ifeq ($(BOARD_VENDOR),samsung)
-include $(SAM_ROOT)/consumerir/Android.mk
-include $(SAM_ROOT)/power/Android.mk
+#include $(SAM_ROOT)/consumerir/Android.mk
+#include $(SAM_ROOT)/power/Android.mk
 include $(SAM_ROOT)/ril/Android.mk
 endif
