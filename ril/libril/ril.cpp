@@ -63,6 +63,12 @@ namespace android {
 #define SOCKET3_NAME_RIL "rild3"
 #define SOCKET4_NAME_RIL "rild4"
 
+#define RIL_SERVICE_NAME_BASE "slot"
+#define RIL1_SERVICE_NAME "slot1"
+#define RIL2_SERVICE_NAME "slot2"
+#define RIL3_SERVICE_NAME "slot3"
+#define RIL4_SERVICE_NAME "slot4"
+
 #define SOCKET_NAME_RIL_DEBUG "rild-debug"
 
 #define ANDROID_WAKE_LOCK_NAME "radio-interface"
@@ -168,6 +174,10 @@ extern "C" const char * rilSocketIdToString(RIL_SOCKET_ID socket_id);
 
 extern "C"
 char rild[MAX_SOCKET_NAME_LENGTH] = SOCKET_NAME_RIL;
+extern "C"
+char ril_service_name_base[MAX_SERVICE_NAME_LENGTH] = RIL_SERVICE_NAME_BASE;
+extern "C"
+char ril_service_name[MAX_SERVICE_NAME_LENGTH] = RIL1_SERVICE_NAME;
 
 #define RIL_VENDOR_COMMANDS_OFFSET 10000
 
@@ -401,6 +411,18 @@ extern "C"
 void RIL_setRilSocketName(const char * s) {
     strncpy(rild, s, MAX_SOCKET_NAME_LENGTH);
 }
+
+char * RIL_getServiceName() {
+    return ril_service_name;
+}
+
+extern "C"
+void RIL_setServiceName(const char * s) {
+    strncpy(ril_service_name, s, MAX_SERVICE_NAME_LENGTH);
+}
+
+extern "C"
+void rilc_thread_pool() { }
 
 static char *
 strdupReadString(Parcel &p) {
